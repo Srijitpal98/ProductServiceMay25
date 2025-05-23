@@ -1,0 +1,2 @@
+server.port=8080 -> port no can be changed from here
+@RestController -> allows to have REST APIs -> Representational State Transfer API
