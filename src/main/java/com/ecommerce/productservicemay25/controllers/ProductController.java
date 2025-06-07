@@ -1,6 +1,7 @@
 package com.ecommerce.productservicemay25.controllers;
 
 import com.ecommerce.productservicemay25.models.Product;
+import com.ecommerce.productservicemay25.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +11,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    private ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     // localhost:8080/products/10
     @GetMapping("/{id}")
     public Product getSingleProduct(@PathVariable("id") Long productId) {
         // Should we call FakeStore API here?
-        
-        return new Product();
+        // No, we should make a call to the Service
+        return productService.getSingleProduct(productId);
     }
 
     // localhost:8080/products/
@@ -36,15 +42,15 @@ public class ProductController {
         return null;
     }
 
-    @PatchMapping("/{id}")
-    public Product updateProduct(@PathVariable("id") Product product) {
-        return product;
-    }
-
-    @PutMapping("/{id}")
-    public Product replaceProduct(@PathVariable("id") Product product) {
-        return product;
-    }
+//    @PatchMapping("/{id}")
+//    public Product updateProduct(@PathVariable("id") Product product) {
+//        return product;
+//    }
+//
+//    @PutMapping("/{id}")
+//    public Product replaceProduct(@PathVariable("id") Product product) {
+//        return product;
+//    }
 
 }
 
