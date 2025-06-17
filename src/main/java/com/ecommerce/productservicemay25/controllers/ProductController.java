@@ -1,7 +1,10 @@
 package com.ecommerce.productservicemay25.controllers;
 
+import com.ecommerce.productservicemay25.dtos.ExceptionDto;
+import com.ecommerce.productservicemay25.exceptions.ProductNotFoundException;
 import com.ecommerce.productservicemay25.models.Product;
 import com.ecommerce.productservicemay25.services.ProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +22,24 @@ public class ProductController {
 
     // localhost:8080/products/10
     @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") Long productId) {
-        // Should we call FakeStore API here?
-        // No, we should make a call to the Service
-        return productService.getSingleProduct(productId);
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
+        // Should we call FakeStore API here? No, we should make a call to the Service
+
+        //throw new RuntimeException("Something went wrong");
+        ResponseEntity<Product> responseEntity =
+                new ResponseEntity<>(
+                        productService.getSingleProduct(productId),
+                        HttpStatus.OK
+                );
+//        Product product = null;
+//        try {
+//            product = productService.getSingleProduct(productId);
+//            responseEntity = new ResponseEntity<>(product, HttpStatus.OK);
+//        } catch (RuntimeException e) {
+//            e.printStackTrace();
+//            responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+        return responseEntity;
     }
 
     // localhost:8080/products/
@@ -40,6 +57,13 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long productId) {
         return null;
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ExceptionDto> handleRuntimeException() {
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage("Handling Exception within the Controller");
+        return new ResponseEntity<>(exceptionDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 //    @PatchMapping("/{id}")
