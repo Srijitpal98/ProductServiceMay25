@@ -28,7 +28,7 @@ public class ProductServiceExceptionHandler {
         ProductNotFoundExceptionDto exceptionDto = new ProductNotFoundExceptionDto();
 
         //TODO
-        // exceptionDto.setProductId(??);
+        // exceptionDto.setProductId(exceptionDto.getProductId());
 
         exceptionDto.setMessage("Product not found");
         exceptionDto.setResolution("Please try again with valid Product ID");

@@ -4,9 +4,11 @@ import com.ecommerce.productservicemay25.dtos.ExceptionDto;
 import com.ecommerce.productservicemay25.exceptions.ProductNotFoundException;
 import com.ecommerce.productservicemay25.models.Product;
 import com.ecommerce.productservicemay25.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    private final RestTemplate restTemplate;
     private ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(@Qualifier("${variable}") ProductService productService,
+                             RestTemplate restTemplate) {
         this.productService = productService;
+        this.restTemplate = restTemplate;
     }
 
     // localhost:8080/products/10
