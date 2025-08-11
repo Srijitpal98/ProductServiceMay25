@@ -10,26 +10,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ProductServiceExceptionHandler {
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ExceptionDto> handleRuntimeException() {
-
-        ExceptionDto exceptionDto = new ExceptionDto();
-        exceptionDto.setMessage("Something went wrong");
-        exceptionDto.setResolutionDetails("You need to pay more money to get it resolved. Thanks!");
-
-        return new ResponseEntity<>(
-                exceptionDto,
-                HttpStatus.UNAUTHORIZED
-        );
-    }
+//    @ExceptionHandler(RuntimeException.class)
+//    public ResponseEntity<ExceptionDto> handleRuntimeException() {
+//
+//        ExceptionDto exceptionDto = new ExceptionDto();
+//        exceptionDto.setMessage("Something went wrong");
+//        exceptionDto.setResolutionDetails("You need to pay more money to get it resolved. Thanks!");
+//
+//        return new ResponseEntity<>(
+//                exceptionDto,
+//                HttpStatus.UNAUTHORIZED
+//        );
+//    }
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ProductNotFoundExceptionDto> handleProductNotFoundException() {
+    public ResponseEntity<ProductNotFoundExceptionDto> handleProductNotFoundException(ProductNotFoundException e) {
         ProductNotFoundExceptionDto exceptionDto = new ProductNotFoundExceptionDto();
 
         //TODO
-        // exceptionDto.setProductId(exceptionDto.getProductId());
+        // exceptionDto.setProductId(???);
 
+//        e.printStackTrace();
+        exceptionDto.setProductId(e.getProductId());
         exceptionDto.setMessage("Product not found");
         exceptionDto.setResolution("Please try again with valid Product ID");
 
