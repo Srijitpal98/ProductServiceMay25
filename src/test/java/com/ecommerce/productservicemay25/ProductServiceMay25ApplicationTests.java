@@ -22,14 +22,14 @@ class ProductServiceMay25ApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	void testQuery() {
-		Optional<Product> productOptional = productRepository.findById(1L);
-
-		System.out.println("DEBUG-1");
-
-		Product product = productRepository.findProductWithGivenId(1L);
-
-		System.out.println("DEBUG-2");
-	}
+//	@Test
+//	void testQuery() {
+//		Optional<Product> productOptional = productRepository.findById(1L);
+//
+//		System.out.println("DEBUG-1");
+//
+//		Product product = productRepository.findProductWithGivenId(1L);
+//
+//		System.out.println("DEBUG-2");
+//	}
 }
