@@ -46,25 +46,25 @@ public class SelfProductService implements ProductService {
 
     @Override
     public Product createProduct(Product product) throws CategoryNotFoundException{
-        Category category = product.getCategory();
-
-        if(category == null) {
-            throw new CategoryNotFoundException("Product can't be created without " +
-                    "category information. Please try again with Category.");
-        }
-
-        //Find the category using the title.
-        Optional<Category> categoryOptional = categoryRepository.findByTitle(category.getTitle());
-
-        if(categoryOptional.isEmpty()) {
-            //There's no category in the DB with the given title.
-            //Create a category object and save it in the DB
-            category = categoryRepository.save(category);
-        }
-        else {
-            category = categoryOptional.get();
-        }
-        product.setCategory(category);
+//        Category category = product.getCategory();
+//
+//        if(category == null) {
+//            throw new CategoryNotFoundException("Product can't be created without " +
+//                    "category information. Please try again with Category.");
+//        }
+//
+//        //Find the category using the title.
+//        Optional<Category> categoryOptional = categoryRepository.findByTitle(category.getTitle());
+//
+//        if(categoryOptional.isEmpty()) {
+//            //There's no category in the DB with the given title.
+//            //Create a category object and save it in the DB
+//            category = categoryRepository.save(category);
+//        }
+//        else {
+//            category = categoryOptional.get();
+//        }
+//        product.setCategory(category);
         return productRepository.save(product);
 //        return null;
     }
