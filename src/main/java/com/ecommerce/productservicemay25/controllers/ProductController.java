@@ -20,7 +20,7 @@ public class ProductController {
     private final RestTemplate restTemplate;
     private ProductService productService;
 
-    public ProductController(@Qualifier("selfProductService") ProductService productService,
+    public ProductController(ProductService productService,
                              RestTemplate restTemplate) {
         this.productService = productService;
         this.restTemplate = restTemplate;
@@ -28,15 +28,27 @@ public class ProductController {
 
     // localhost:8080/products/10
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
+    public Product getSingleProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
         // Should we call FakeStore API here? No, we should make a call to the Service
 
+        System.out.println("DEBUG POINT");
+
+        return productService.getSingleProduct(productId);
+//        product.setPrice(80000.0);
+//
+//        return product;
+
+//        Product product = new Product();
+//        product.setId(productId);
+//        product.setTitle("Macbook Pro");
+//        return product;
+
         //throw new RuntimeException("Something went wrong");
-        ResponseEntity<Product> responseEntity =
-                new ResponseEntity<>(
-                        productService.getSingleProduct(productId),
-                        HttpStatus.OK
-                );
+//        ResponseEntity<Product> responseEntity =
+//                new ResponseEntity<>(
+//                        productService.getSingleProduct(productId),
+//                        HttpStatus.OK
+//                );
 //        Product product = null;
 //        try {
 //            product = productService.getSingleProduct(productId);
@@ -45,7 +57,7 @@ public class ProductController {
 //            e.printStackTrace();
 //            responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
-        return responseEntity;
+//        return responseEntity;
     }
 
     // localhost:8080/products/

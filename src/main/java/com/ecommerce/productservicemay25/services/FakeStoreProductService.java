@@ -4,6 +4,7 @@ import com.ecommerce.productservicemay25.dtos.FakeStoreProductDto;
 import com.ecommerce.productservicemay25.exceptions.ProductNotFoundException;
 import com.ecommerce.productservicemay25.models.Category;
 import com.ecommerce.productservicemay25.models.Product;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +14,7 @@ import java.util.List;
 
 //Note: This service class will implement all the API's using FakeStore.
 @Service("fakeStoreProductService")
+@Primary
 public class FakeStoreProductService implements ProductService {
     private RestTemplate restTemplate;
 
