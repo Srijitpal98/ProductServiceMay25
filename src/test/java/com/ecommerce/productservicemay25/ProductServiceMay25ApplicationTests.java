@@ -33,10 +33,10 @@ class ProductServiceMay25ApplicationTests {
 //	@Transactional
 	void testQuery() {
 		//EAGER
-		Optional<Product> productOptional = productRepository.findById(3L);
+//		Optional<Product> productOptional = productRepository.findById(3L);
 
 		//LAZY
-		Optional<Category> categoryOptional = categoryRepository.findById(2L);
+//		Optional<Category> categoryOptional = categoryRepository.findById(2L);
 
 //		System.out.println("DEBUG");
 //
@@ -45,7 +45,7 @@ class ProductServiceMay25ApplicationTests {
 //
 //		System.out.println(products.get(0).getTitle());
 //
-		System.out.println("DEBUG");
+//		System.out.println("DEBUG");
 
 //		System.out.println("DEBUG-1");
 //

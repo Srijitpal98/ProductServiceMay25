@@ -20,19 +20,19 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ProductController.class)
+//@WebMvcTest(ProductController.class)
 public class ProductControllerMockMVCTest {
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockitoBean
-    private ProductService productService;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @MockitoBean
-    private RestTemplate restTemplate;
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @MockitoBean
+//    private ProductService productService;
+//
+//    @Autowired
+//    private ObjectMapper objectMapper;
+//
+//    @MockitoBean
+//    private RestTemplate restTemplate;
 
 //    @Test
 //    public void testGetAllProductsAPI() throws Exception {

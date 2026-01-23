@@ -1,8 +1,11 @@
 package com.ecommerce.productservicemay25.controllers;
 
+import com.ecommerce.productservicemay25.commons.AuthCommons;
 import com.ecommerce.productservicemay25.dtos.ExceptionDto;
+import com.ecommerce.productservicemay25.dtos.UserDto;
 import com.ecommerce.productservicemay25.exceptions.CategoryNotFoundException;
 import com.ecommerce.productservicemay25.exceptions.ProductNotFoundException;
+import com.ecommerce.productservicemay25.exceptions.UnauthorizedException;
 import com.ecommerce.productservicemay25.models.Product;
 import com.ecommerce.productservicemay25.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,19 +22,27 @@ import java.util.List;
 public class ProductController {
     private final RestTemplate restTemplate;
     private ProductService productService;
+    private AuthCommons authCommons;
 
     public ProductController(ProductService productService,
-                             RestTemplate restTemplate) {
+                             RestTemplate restTemplate,
+                             AuthCommons authCommons) {
         this.productService = productService;
         this.restTemplate = restTemplate;
+        this.authCommons = authCommons;
     }
 
     // localhost:8080/products/10
-    @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
+    @GetMapping("/{id}/{token}")
+    public Product getSingleProduct(@PathVariable("id") Long productId, @PathVariable String token) throws ProductNotFoundException {
         // Should we call FakeStore API here? No, we should make a call to the Service
 
-        System.out.println("DEBUG POINT");
+        UserDto userDto = authCommons.validateToken(token);
+
+        if(userDto == null) {
+            //Unauthorized access
+            throw new UnauthorizedException("Invalid Token Provided.");
+        }
 
         return productService.getSingleProduct(productId);
 //        product.setPrice(80000.0);
