@@ -15,11 +15,11 @@ import java.util.Optional;
 
 @SpringBootTest
 class ProductServiceMay25ApplicationTests {
-	@Autowired
-	private ProductRepository productRepository;
-
-	@Autowired
-	private CategoryRepository categoryRepository;
+//	@Autowired
+//	private ProductRepository productRepository;
+//
+//	@Autowired
+//	private CategoryRepository categoryRepository;
 
 //	public ProductServiceMay25ApplicationTests(ProductRepository productRepository) {
 //		this.productRepository = productRepository;
@@ -29,9 +29,24 @@ class ProductServiceMay25ApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
+//	@Test
+//	void insertProductInRDS(){
+//		Product product = new Product();
+//		product.setTitle("Macbook Pro");
+//		product.setPrice(80000.0);
+//
+//		Category category = new Category();
+//		category.setTitle("Laptops");
+//
+//		product.setCategory(categoryRepository.findById(1L).get());
+//
+//		categoryRepository.save(category);
+//		productRepository.save(product);
+//	}
+
+//	@Test
 //	@Transactional
-	void testQuery() {
+//	void testQuery() {
 		//EAGER
 //		Optional<Product> productOptional = productRepository.findById(3L);
 
@@ -52,5 +67,5 @@ class ProductServiceMay25ApplicationTests {
 //		Product product = productRepository.findProductWithGivenId(1L);
 //
 //		System.out.println("DEBUG-2");
-	}
+//	}
 }

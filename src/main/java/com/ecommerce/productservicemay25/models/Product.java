@@ -1,6 +1,8 @@
 package com.ecommerce.productservicemay25.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -14,8 +16,9 @@ public class Product extends BaseModel {
     private Double price;
     private String description;
     private String imgUrl;
-    @ManyToOne(cascade = {jakarta.persistence.CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {jakarta.persistence.CascadeType.PERSIST})
     @JoinColumn
+    @JsonManagedReference
     private Category category;
 }
 

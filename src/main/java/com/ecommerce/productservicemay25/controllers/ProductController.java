@@ -33,16 +33,16 @@ public class ProductController {
     }
 
     // localhost:8080/products/10
-    @GetMapping("/{id}/{token}")
-    public Product getSingleProduct(@PathVariable("id") Long productId, @PathVariable String token) throws ProductNotFoundException {
+    @GetMapping("/{id}")// /{token}
+    public Product getSingleProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {//, @PathVariable String token
         // Should we call FakeStore API here? No, we should make a call to the Service
 
-        UserDto userDto = authCommons.validateToken(token);
+//        UserDto userDto = authCommons.validateToken(token);
 
-        if(userDto == null) {
-            //Unauthorized access
-            throw new UnauthorizedException("Invalid Token Provided.");
-        }
+//        if(userDto == null) {
+//            //Unauthorized access
+//            throw new UnauthorizedException("Invalid Token Provided.");
+//        }
 
         return productService.getSingleProduct(productId);
 //        product.setPrice(80000.0);

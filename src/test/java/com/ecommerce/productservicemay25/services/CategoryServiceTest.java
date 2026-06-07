@@ -7,11 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+//@SpringBootTest
 class CategoryServiceTest {
-    @Autowired
-    private CategoryService categoryService;
-
-    @Mock
-    private CategoryRepository categoryRepository;
+//    @Autowired
+//    private CategoryService categoryService;
+//
+//    @Mock
+//    private CategoryRepository categoryRepository;
 }
